@@ -27,10 +27,8 @@ export function useHome() {
     if (!user) return nav("/login");
 
     const obj = JSON.parse(localStorage.getItem(user) as string);
-    if (obj) {
-      dispatch(setDespesas(obj.despesas));
-      dispatch(setEditando(obj.editando));
-    }
+    dispatch(setDespesas(obj?.despesas ?? []));
+    dispatch(setEditando(obj?.editando ?? ""));
 
     dispatch(setUser(user));
   }, []);

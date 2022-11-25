@@ -9,6 +9,7 @@ import {
   atualizarDespesa,
   setEditando,
 } from "../redux/userSlice";
+import { currencyApi as api } from "../services";
 
 const tags = ["Alimentacão", "Lazer", "Transporte", "Trabalho", "Saúde"];
 const metodosDePagamento = [
@@ -45,8 +46,6 @@ async function calcularConversaoMoedaRS(
   const { bid } = data[0];
   return +(+bid * +valor).toFixed(2);
 }
-
-const api = axios.create({ baseURL: "https://economia.awesomeapi.com.br" });
 
 export function useForm() {
   const dispatch = useDispatch();

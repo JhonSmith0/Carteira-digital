@@ -1,7 +1,8 @@
 import { useState, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../redux/userSlice";
+import { setDespesas, setEditando, setUser } from "../redux/userSlice";
+import { setUser as setUserCookie } from "../utils/setUser";
 
 export function useLogin() {
   const dispatch = useDispatch();
@@ -10,7 +11,12 @@ export function useLogin() {
   const [data, setData] = useState({ email: "", password: "" });
 
   function salvarUsuario(user: string) {
-    setUser(user);
+    const obj = JSON.parse(localStorage.getItem(user) as string);
+    dispatch(setDespesas(obj?.despesas ?? []));
+    dispatch(setEditando(obj?.editando ?? ""));
+
+    dispatch(setUser(user));
+    setUserCookie(user);
   }
 
   function onChange(name: string) {

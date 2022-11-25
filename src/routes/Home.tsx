@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { background2, titleColor } from "../components/colors";
@@ -39,6 +40,8 @@ const SHome = styled.div`
       padding: 0.7rem 5rem;
       margin-bottom: 1.6rem;
       font-size: 2.4rem;
+      margin-inline: auto;
+      width: max-content;
     }
 
     h2 {
@@ -109,9 +112,10 @@ export default function Home() {
             <p>R$ {calcDespesas()}</p>
           </div>
         </div>
-        <a href="/login">
+
+        <Link to={"/login"}>
           <ProfileIcon className="icon profile-icon" />
-        </a>
+        </Link>
       </header>
       <main>
         <Form />
