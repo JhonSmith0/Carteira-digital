@@ -1,4 +1,50 @@
+import styled from "styled-components";
 import { useForm } from "../hooks/useForm";
+import { background2 } from "./colors";
+
+const SForm = styled.form`
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+  background: ${background2};
+  padding: 1rem 3.2rem;
+  width: 100%;
+  justify-content: center;
+  border-radius: 6px;
+  overflow: hidden;
+
+  & > div {
+    line-height: 2;
+    text-align: center;
+    font-size: 1.8rem;
+    display: grid;
+    letter-spacing: 0.5px;
+  }
+
+  select,
+  input {
+    border: none;
+    height: 2rem;
+    outline: none;
+  }
+
+  input {
+    padding: 0.1rem 0.5rem;
+  }
+
+  label {
+    padding-inline: 0.5rem;
+    min-width: 10ch;
+  }
+
+  button {
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    background: none;
+    margin-block: auto 0.5rem;
+  }
+`;
 
 export function Form() {
   const {
@@ -33,7 +79,7 @@ export function Form() {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <SForm onSubmit={onSubmit}>
       <div>
         <label htmlFor="valor">VALOR</label>
         <input
@@ -90,6 +136,6 @@ export function Form() {
         </select>
       </div>
       <button type="submit">{editando ? "SALVAR" : "ADICIONAR"}</button>
-    </form>
+    </SForm>
   );
 }

@@ -1,7 +1,4 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Component, ReactNode, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
 import walletPana from "../assets/wallet-pana.png";
@@ -11,7 +8,7 @@ import {
   placeHolderColor,
   titleColor,
 } from "../components/colors";
-import { setUser } from "../utils/setUser";
+import { useLogin } from "../hooks/useLogin";
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -102,20 +99,8 @@ const SLogin = styled.div`
   }
 `;
 
-function salvarUsuario(user: string) {
-  setUser(user);
-}
-
 export default function Login() {
-  const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
-  const nav = useNavigate();
-
-  function onSubmit(data: any) {
-    if (!data.email || !data.password) return;
-    nav("/");
-    salvarUsuario(data.email);
-  }
+  const { onChange, onSubmit } = useLogin();
 
   return (
     <>
@@ -129,14 +114,14 @@ export default function Login() {
               Seja bem-vindo
               <br />a sua carteira
             </h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={onSubmit}>
               <fieldset>
                 <label htmlFor="email">E-mail</label>
                 <input
                   type="email"
                   id="email"
                   placeholder="Digite seu e-mail..."
-                  {...register("email")}
+                  onChange={onChange("email")}
                 />
               </fieldset>
               <fieldset>
@@ -145,7 +130,7 @@ export default function Login() {
                   type="password"
                   id="password"
                   placeholder="Digite sua senha aqui..."
-                  {...register("password")}
+                  onChange={onChange("password")}
                 />
                 <input type="submit" value="" style={{ display: "none" }} />
               </fieldset>

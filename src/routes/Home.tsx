@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { background, background2, titleColor } from "../components/colors";
+import { background2, titleColor } from "../components/colors";
 import { Form } from "../components/Form";
 import { Table } from "../components/Table";
 import { useHome } from "../hooks/useHome";
@@ -72,83 +72,6 @@ const SHome = styled.div`
     margin-inline: auto;
     width: max-content;
     margin-block: 2.4rem;
-
-    form {
-      display: flex;
-      gap: 2.4rem;
-      align-items: center;
-      background: ${background2};
-      padding: 1rem 3.2rem;
-      width: 100%;
-      justify-content: center;
-      border-radius: 6px;
-      overflow: hidden;
-
-      & > div {
-        line-height: 2;
-        text-align: center;
-        font-size: 1.8rem;
-        display: grid;
-        letter-spacing: 0.5px;
-      }
-
-      select,
-      input {
-        border: none;
-        height: 2rem;
-        outline: none;
-      }
-
-      input {
-        padding: 0.1rem 0.5rem;
-      }
-
-      label {
-        padding-inline: 0.5rem;
-        min-width: 10ch;
-      }
-
-      button {
-        font-size: 1.6rem;
-        border: none;
-        outline: none;
-        background: none;
-        margin-block: auto 0.5rem;
-      }
-    }
-
-    table {
-      width: 100%;
-      margin-top: 1.4rem;
-      border-spacing: 1px;
-
-      thead {
-        background: ${titleColor};
-        color: white;
-
-        th:first-child {
-          border-radius: 6px 0 0 6px;
-        }
-        th:last-child {
-          border-radius: 0 6px 6px 0;
-        }
-      }
-
-      th,
-      td {
-        padding: 1rem 1.6rem;
-        font-size: 1.4rem;
-        text-align: center;
-        font-weight: 400;
-      }
-
-      tbody {
-        background: ${background};
-        font-family: "Rubik", sans-serif;
-        letter-spacing: unset;
-        color: ${titleColor};
-      }
-    }
   }
 
   .editar-btn {
@@ -172,7 +95,7 @@ const SHome = styled.div`
 `;
 
 export default function Home() {
-  const { data, calcDespesas } = useHome();
+  const { calcDespesas } = useHome();
 
   return (
     <SHome>
